@@ -1,6 +1,6 @@
 #!/usr/bin/env swift
 
-import Cocoa;
+import Cocoa
 
 let width = 110
 let height = 45
@@ -76,10 +76,7 @@ func mandalalalala() {
 }
 
 func getInput() -> String {
-  let standardInput = NSFileHandle.fileHandleWithStandardInput()
-  let data = standardInput.availableData
-  let input = NSString(data:data, encoding:NSUTF8StringEncoding) as! String
-  return input.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+  return String(UnicodeScalar(Int(getchar())))
 }
 
 while true {
@@ -102,10 +99,10 @@ while true {
   } else if input == "k" {
     coords.y -= (0.1 / coords.zoom) * 20
   } else if input == "?" {
-    print("Coords: x: \(coords.x) y: \(coords.y) zoom: \(coords.zoom) iters: \(coords.iters)");
+    print("Coords: x: \(coords.x) y: \(coords.y) zoom: \(coords.zoom) iters: \(coords.iters)")
     let _ = getInput()
   } else if input == "+" {
-    coords.iters += 1000;
+    coords.iters += 1000
   } else if input == "-" {
     if coords.iters > 2000 {
       coords.iters -= 1000
