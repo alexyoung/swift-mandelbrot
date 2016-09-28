@@ -49,8 +49,8 @@ func mandalalalala() {
 
   let chars = "˙.-=+∆*%#0@"
   func getChar(i:Double) -> Character {
-    let index = Int(i * 10) % 10
-    return chars[chars.startIndex.advancedBy(index)]
+    let index = chars.index(chars.startIndex, offsetBy:(Int(i * 10) % 10))
+    return chars.characters[index]
   }
 
   func mandelbrot() {
@@ -58,13 +58,13 @@ func mandalalalala() {
     var ln = ""
     for i in 0...height {
       for j in 0...width {
-        let iters = getIters(toComplex(j, j:i))
+        let iters = getIters(c:toComplex(i:j, j:i))
 
         if (iters >= 2.0) {
           ln += " "
         } else {
-          let col = getCol(iters)
-          ln += "\u{001B}[38;5;\(col)m" + String(getChar(iters))
+            let col = getCol(i:iters)
+            ln += "\u{001B}[38;5;\(col)m" + String(getChar(i:iters))
         }
       }
       ln += "\n"
@@ -75,8 +75,8 @@ func mandalalalala() {
   mandelbrot()
 }
 
-func getInput() -> String {
-  return String(UnicodeScalar(Int(getchar())))
+func getInput() -> String? {
+  return readLine(strippingNewline: true)
 }
 
 while true {
